@@ -6,7 +6,7 @@
 /*   By: lwourms <lwourms@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 09:43:47 by lwourms           #+#    #+#             */
-/*   Updated: 2021/07/02 16:00:50 by lwourms          ###   ########.fr       */
+/*   Updated: 2021/07/02 16:34:34 by lwourms          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ int	main(void)
 	ft_putstr_fd("\n", 1);
 	g_packet.buffer = 0;
 	g_packet.bit_index = 0;
-	signal(SIGUSR1, listen_0);
-	signal(SIGUSR2, listen_1);
+	if (signal(SIGUSR1, listen_0) == SIG_ERR)
+		ft_error(NULL, NULL, NULL, "An error occured\n");
+	if (signal(SIGUSR2, listen_1) == SIG_ERR)
+		ft_error(NULL, NULL, NULL, "An error occured\n");
 	while (TRUE)
 		pause();
 	return (0);
